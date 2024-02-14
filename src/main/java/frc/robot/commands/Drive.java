@@ -24,8 +24,8 @@ public class Drive extends Command {
   }
   
   DriveTrainSubsystem driveTrain;
-  MotorController leftMotor;
-  MotorController rightMotor;
+  MotorController frontLeftDrive;
+  MotorController frontRightDrive;
   DifferentialDrive differentialDriveTrain;
 
   Joystick controller1 = new Joystick(0);
@@ -35,7 +35,7 @@ public class Drive extends Command {
    * Creates a new DriverOperated.
    * @return 
    */
-  public void DriverOperated(DriveTrainSubsystem driveTrain, MotorController leftmotor, MotorController rightMotor) {
+  public void DriverOperated(DriveTrainSubsystem driveTrain, MotorController frontLeftDrive, MotorController frontRightDrive) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.driveTrain = driveTrain;
   }

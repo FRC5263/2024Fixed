@@ -7,11 +7,17 @@ package frc.robot;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkMaxAbsoluteEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import frc.robot.Constants;
+
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import frc.robot.subsystems.DriveTrainSubsystem;
 
 
 
@@ -31,30 +37,40 @@ public final class Constants {
     public static final XboxController controller0 = new XboxController(0);
     public static final XboxController controller1 = new XboxController(1);
 
-    //drivetrain motors
-    public static final CANSparkMax leftMotor1 = new CANSparkMax(1, MotorType.kBrushless);
-    public static final CANSparkMax leftMotor2 = new CANSparkMax(3, MotorType.kBrushless);
-    public static final CANSparkMax rightMotor1 = new CANSparkMax(4, MotorType.kBrushless);
-    public static final CANSparkMax rightMotor2 = new CANSparkMax(10, MotorType.kBrushless);
+    //Encoder
+    public static final PWMSparkMax frontRightDriveEncoder = new PWMSparkMax(6);
+    public static final PWMSparkMax backRightDriveEncoder = new PWMSparkMax(5);
+    public static final PWMSparkMax frontLeftDriveEncoder = new PWMSparkMax(1);
+    public static final PWMSparkMax backLeftDriveEncoder = new PWMSparkMax(2);
+    public static final PWMSparkMax shooterRightEncoder = new PWMSparkMax(3);
+    public static final PWMSparkMax shooterLeftEncoder = new PWMSparkMax(7);
+    public static final PWMSparkMax elbowEncoder = new PWMSparkMax(8);
+    
+    // PWM Channel Assignments
+    public final int PWM_Drive_FR = 6;
+    public final int PWM_Drive_BR = 5;
+    public final int PWM_Drive_FL = 1;
+    public final int PWM_Drive_BL = 2;
+    public final int PWM_Shooter_R = 3;
+    public final int PWM_Shooter_L = 7;
+    public final int PWM_Elbow = 8;
 
-    //drivetrain encoders
-    //public static final Encoder leftEncoder1 = new SparkMaxAbsoluteEncoder(leftMotor1,);
+    // Drivetrain
+    public MotorController frontRightDrive = new Spark(PWM_Drive_FR);
+    public MotorController backRightDrive = new Spark(PWM_Drive_BR);
+    public MotorController frontLeftDrive = new Spark(PWM_Drive_FL);
+    public MotorController backLeftDrive = new Spark(PWM_Drive_BL);
 
-    //arm motors
-    public static final CANSparkMax leftArmMotor = new CANSparkMax(9, MotorType.kBrushless);
-    public static final CANSparkMax rightArmMotor = new CANSparkMax(8, MotorType.kBrushless);
-    public static final CANSparkMax winchMotor = new CANSparkMax(7, MotorType.kBrushless);
+    //Other
+    public MotorController shooterRight = new Spark(PWM_Shooter_R);
+    public MotorController shooterLeft = new Spark(PWM_Shooter_L);
+    public MotorController elbow = new Spark(PWM_Elbow);
 
-    //wrist motors
-    public static final CANSparkMax intakeMotor1 = new CANSparkMax(2, MotorType.kBrushless);
-    public static final CANSparkMax intakeMotor2 = new CANSparkMax(5, MotorType.kBrushless);
-    public static final CANSparkMax wristMotor = new CANSparkMax(6, MotorType.kBrushless);
+
 
     //shuffleboard
     ShuffleboardTab mainTab = Shuffleboard.getTab("Main Tab");
     ShuffleboardTab systemTab = Shuffleboard.getTab("System");
-
-    //networktable entries
 
   }
 
@@ -66,21 +82,21 @@ public final class Constants {
     Shuffleboard.selectTab("Main Tab");
 
     //adds the sparks to the system tab
-    Shuffleboard.getTab("System").add("Spark 1", OperatorConstants.leftMotor1);
-    Shuffleboard.getTab("System").add("Spark 2", OperatorConstants.intakeMotor1);
-    Shuffleboard.getTab("System").add("Spark 3", OperatorConstants.leftMotor2);
-    Shuffleboard.getTab("System").add("Spark 4", OperatorConstants.rightMotor1);
-    Shuffleboard.getTab("System").add("Spark 5", OperatorConstants.intakeMotor2);
-    Shuffleboard.getTab("System").add("Spark 6", OperatorConstants.wristMotor);
-    Shuffleboard.getTab("System").add("Spark 7", OperatorConstants.winchMotor);
-    Shuffleboard.getTab("System").add("Spark 8", OperatorConstants.rightArmMotor);
-    Shuffleboard.getTab("System").add("Spark 9", OperatorConstants.leftArmMotor);
-    Shuffleboard.getTab("System").add("Spark 10", OperatorConstants.rightMotor2);
+    Shuffleboard.getTab("System").add("Spark 1", OperatorConstants.frontLeftDriveEncoder);
+    Shuffleboard.getTab("System").add("Spark 2", OperatorConstants.backLeftDriveEncoder);
+    Shuffleboard.getTab("System").add("Spark 3", OperatorConstants.shooterRightEncoder);
+    //Shuffleboard.getTab("System").add("Spark 4", OperatorConstants.climber);
+    Shuffleboard.getTab("System").add("Spark 5", OperatorConstants.frontRightDriveEncoder);
+    Shuffleboard.getTab("System").add("Spark 6", OperatorConstants.backRightDriveEncoder);
+    Shuffleboard.getTab("System").add("Spark 7", OperatorConstants.shooterLeftEncoder);
+    Shuffleboard.getTab("System").add("Spark 8", OperatorConstants.elbowEncoder);
+    
 
-    //current limits for sparks
-    OperatorConstants.leftMotor1.setSmartCurrentLimit(45);
-    OperatorConstants.leftMotor2.setSmartCurrentLimit(45);
-    OperatorConstants.rightMotor1.setSmartCurrentLimit(45);
-    OperatorConstants.rightMotor2.setSmartCurrentLimit(45);
+/*    //current limits for sparks
+    OperatorConstants.frontRightDriveEncoder.setSmartCurrentLimit(45);
+    OperatorConstants.backRightDriveEncoder.setSmartCurrentLimit(45);
+    OperatorConstants.frontLeftDriveEncoder.setSmartCurrentLimit(45);
+    OperatorConstants.backLeftDriveEncoder.setSmartCurrentLimit(45);
+    */
   }
 }

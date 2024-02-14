@@ -4,8 +4,10 @@
 
 package frc.robot.subsystems;
 
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.PWM;
 
 import com.revrobotics.CANSparkMax;
 
@@ -13,43 +15,50 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.*;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+
 
 
 public class DriveTrainSubsystem extends SubsystemBase {
 
   //init variables
-  CANSparkMax leftMotor1;
-  CANSparkMax rightMotor1;
-  CANSparkMax leftMotor2;
-  CANSparkMax rightMotor2;
-  MotorControllerGroup leftMotors;
-  MotorControllerGroup rightMotors;
-  Encoder leftEncoder1;
-  Encoder rightEncoder1;
-  Encoder leftEncoder2;
-  Encoder rightEncoder2;
+    //CANSparkMax leftMotor1;
+
+ PWMSparkMax frontRightDrive;
+ PWMSparkMax backRightDrive;
+ PWMSparkMax frontLeftDrive;
+ PWMSparkMax backLeftDrive;
+  Encoder frontRightDriveEncoder;
+  Encoder backRightDriveEncoder;
+  Encoder frontLeftDriveEncoder;
+  Encoder backLeftDriveEncoder;
   DifferentialDrive differentialDriveTrain;
   Encoder[] encoders;
 
-  public DriveTrainSubsystem(CANSparkMax leftMotor1, CANSparkMax leftMotor2, CANSparkMax rightMotor1, CANSparkMax rightMotor2){
+  public DriveTrainSubsystem(PWMSparkMax frontRightDrive, PWMSparkMax backRightDrive, PWMSparkMax frontLeftDrive, PWMSparkMax backLeftDrive){
     System.out.print("Creating new drivetrain subsystem");
-    this.leftMotor1 = leftMotor1;
-    this.rightMotor1 = rightMotor1;
-    this.leftMotor2 = leftMotor2;
-    this.rightMotor2 = rightMotor2;
-    this.leftMotors = new MotorControllerGroup(leftMotor1, leftMotor2);
-    this.rightMotors = new MotorControllerGroup(rightMotor1, rightMotor2);
-    this.differentialDriveTrain = new DifferentialDrive(leftMotors, rightMotors);
+    this.frontRightDrive = frontRightDrive;
+    this.backRightDrive = backRightDrive;
+    this.frontLeftDrive = frontLeftDrive;
+    this.backLeftDrive = backLeftDrive;
+
+    //Motor Controller groups
+    frontRightDrive.addFollower(backRightDrive);
+    frontLeftDrive.addFollower(backLeftDrive);
+    
+   
+    this.differentialDriveTrain = new DifferentialDrive(frontRightDrive, frontLeftDrive);
+    
     System.out.print("Drivetrain subsystem created");
   }
 
-  public DriveTrainSubsystem(Encoder rightEncoder1, Encoder leftEncoder1, Encoder rightEncoder2, Encoder leftEncoder2){
+  public DriveTrainSubsystem(Encoder frontRightDriveEncoder, Encoder backRightDriveEncoder, Encoder frontLeftDriveEncoder, Encoder backLeftDriveEncoder){
     System.out.print("Creating drivetrain encoders");
-    this.leftEncoder1 = leftEncoder1;
-    this.rightEncoder1 = rightEncoder1;
-    this.rightEncoder2 = rightEncoder2;
-    this.leftEncoder2 = leftEncoder2;
-    Encoder[] encoder = {leftEncoder1, rightEncoder1, leftEncoder2, rightEncoder2};
+    this.frontRightDriveEncoder = frontRightDriveEncoder;
+    this.backRightDriveEncoder = backRightDriveEncoder;
+    this.frontLeftDriveEncoder = frontLeftDriveEncoder;
+    this.backLeftDriveEncoder = backLeftDriveEncoder;
+    Encoder[] encoder = {frontRightDriveEncoder, backRightDriveEncoder, frontLeftDriveEncoder, backLeftDriveEncoder};
     this.encoders = encoder;
     System.out.print("Drivetrain encoders created");
 
@@ -93,7 +102,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
    * @return left side speed
    */
   public double getLeftSpeed() {
-    return leftMotors.get();
+    return frontLeftDrive.get();
   }
 
   /**
@@ -101,7 +110,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
    * @return right side speed
    */
   public double getRightSpeed() {
-    return rightMotors.get();
+    return frontRightDrive.get();
   }
 }
 

@@ -30,7 +30,7 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   //drivetrain creation
-  private DriveTrainSubsystem driveTrain = new DriveTrainSubsystem(OperatorConstants.leftMotor1, OperatorConstants.leftMotor2, OperatorConstants.rightMotor1, OperatorConstants.rightMotor2);
+  private DriveTrainSubsystem driveTrain = new DriveTrainSubsystem(OperatorConstants.frontRightDriveEncoder, OperatorConstants.backRightDriveEncoder, OperatorConstants.frontLeftDriveEncoder, OperatorConstants.backLeftDriveEncoder);
 
 
   //creates new teleop command
