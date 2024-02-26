@@ -7,7 +7,7 @@ package frc.robot;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkMaxAbsoluteEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import frc.robot.Constants;
+//import frc.robot.Constants;
 
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -38,33 +38,35 @@ public final class Constants {
     public static final XboxController controller1 = new XboxController(1);
 
     //Encoder
-    public static final PWMSparkMax frontRightDriveEncoder = new PWMSparkMax(6);
-    public static final PWMSparkMax backRightDriveEncoder = new PWMSparkMax(5);
-    public static final PWMSparkMax frontLeftDriveEncoder = new PWMSparkMax(1);
-    public static final PWMSparkMax backLeftDriveEncoder = new PWMSparkMax(2);
-    public static final PWMSparkMax shooterRightEncoder = new PWMSparkMax(3);
-    public static final PWMSparkMax shooterLeftEncoder = new PWMSparkMax(7);
-    public static final PWMSparkMax elbowEncoder = new PWMSparkMax(8);
     
-    // PWM Channel Assignments
-    public final int PWM_Drive_FR = 6;
-    public final int PWM_Drive_BR = 5;
-    public final int PWM_Drive_FL = 1;
-    public final int PWM_Drive_BL = 2;
-    public final int PWM_Shooter_R = 3;
-    public final int PWM_Shooter_L = 7;
-    public final int PWM_Elbow = 8;
+    public static CANSparkMax frontRightDriveEncoder;
+    public static CANSparkMax backRightDriveEncoder;
+    public static CANSparkMax frontLeftDriveEncoder;
+    public static CANSparkMax backLeftDriveEncoder;
+    public static CANSparkMax shooterRightEncoder;
+    public static CANSparkMax shooterLeftEncoder;
+    public static CANSparkMax elbowEncoder;
+    
+    // CAN Channel Assignments
+    public final int CAN_Drive_FR = 6;
+    public final int CAN_Drive_BR = 5;
+    public final int CAN_Drive_FL = 1;
+    public final int CAN_Drive_BL = 2;
+    public final int CAN_Shooter_R = 3;
+    public final int CAN_Shooter_L = 7;
+    public final int CAN_Elbow = 8;
+   
 
     // Drivetrain
-    public MotorController frontRightDrive = new Spark(PWM_Drive_FR);
-    public MotorController backRightDrive = new Spark(PWM_Drive_BR);
-    public MotorController frontLeftDrive = new Spark(PWM_Drive_FL);
-    public MotorController backLeftDrive = new Spark(PWM_Drive_BL);
+    public MotorController frontRightDrive = new Spark(CAN_Drive_FR);
+    public MotorController backRightDrive = new Spark(CAN_Drive_BR);
+    public MotorController frontLeftDrive = new Spark(CAN_Drive_FL);
+    public MotorController backLeftDrive = new Spark(CAN_Drive_BL);
 
     //Other
-    public MotorController shooterRight = new Spark(PWM_Shooter_R);
-    public MotorController shooterLeft = new Spark(PWM_Shooter_L);
-    public MotorController elbow = new Spark(PWM_Elbow);
+    public MotorController shooterRight = new Spark(CAN_Shooter_R);
+    public MotorController shooterLeft = new Spark(CAN_Shooter_L);
+    public MotorController elbow = new Spark(CAN_Elbow);
 
 
 
@@ -92,11 +94,11 @@ public final class Constants {
     Shuffleboard.getTab("System").add("Spark 8", OperatorConstants.elbowEncoder);
     
 
-/*    //current limits for sparks
+    //current limits for sparks
     OperatorConstants.frontRightDriveEncoder.setSmartCurrentLimit(45);
     OperatorConstants.backRightDriveEncoder.setSmartCurrentLimit(45);
     OperatorConstants.frontLeftDriveEncoder.setSmartCurrentLimit(45);
     OperatorConstants.backLeftDriveEncoder.setSmartCurrentLimit(45);
-    */
+    
   }
 }

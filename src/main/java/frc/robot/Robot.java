@@ -20,6 +20,7 @@ public class Robot extends TimedRobot {
   private Command m_teleOpCommand;
 
   private RobotContainer m_robotContainer;
+  
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -31,7 +32,10 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     System.out.println("ROBOTINIT\n\n");
     m_robotContainer = new RobotContainer();
-    Constants.ConstantsInit();
+    // Where the Constants.ConstantsInit(); was
+   
+
+    
 
   }
 

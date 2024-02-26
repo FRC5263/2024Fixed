@@ -8,13 +8,13 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.PWM;
+import frc.robot.Constants;
 
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.*;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
 
@@ -24,18 +24,20 @@ public class DriveTrainSubsystem extends SubsystemBase {
   //init variables
     //CANSparkMax leftMotor1;
 
- PWMSparkMax frontRightDrive;
- PWMSparkMax backRightDrive;
- PWMSparkMax frontLeftDrive;
- PWMSparkMax backLeftDrive;
+ CANSparkMax frontRightDrive;
+ CANSparkMax backRightDrive;
+ CANSparkMax frontLeftDrive;
+ CANSparkMax backLeftDrive;
   Encoder frontRightDriveEncoder;
   Encoder backRightDriveEncoder;
   Encoder frontLeftDriveEncoder;
   Encoder backLeftDriveEncoder;
   DifferentialDrive differentialDriveTrain;
   Encoder[] encoders;
+ 
 
-  public DriveTrainSubsystem(PWMSparkMax frontRightDrive, PWMSparkMax backRightDrive, PWMSparkMax frontLeftDrive, PWMSparkMax backLeftDrive){
+
+  public DriveTrainSubsystem(CANSparkMax frontRightDrive, CANSparkMax backRightDrive, CANSparkMax frontLeftDrive, CANSparkMax backLeftDrive){
     System.out.print("Creating new drivetrain subsystem");
     this.frontRightDrive = frontRightDrive;
     this.backRightDrive = backRightDrive;
@@ -43,9 +45,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
     this.backLeftDrive = backLeftDrive;
 
     //Motor Controller groups
-    frontRightDrive.addFollower(backRightDrive);
-    frontLeftDrive.addFollower(backLeftDrive);
-    
+    //backRightDrive.follow(frontRightDrive);
+    //backLeftDrive.follow(frontLeftDrive);
    
     this.differentialDriveTrain = new DifferentialDrive(frontRightDrive, frontLeftDrive);
     
