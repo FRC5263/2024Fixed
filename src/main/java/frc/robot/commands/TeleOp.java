@@ -18,6 +18,7 @@ public class TeleOp extends Command {
   XboxController controller0;
   XboxController controller1;
   boolean driveTrainOnly;
+  
   double xSpeed;
   double zSpeed;
 
@@ -36,7 +37,7 @@ public class TeleOp extends Command {
 
     //assingning method inputs to class variables
     this.differentialDriveTrain = differentialDriveTrain;
-   
+    
     this.controller0 = controller0;
     this.controller1 = controller1;
 
@@ -82,6 +83,7 @@ public class TeleOp extends Command {
     }
 
     //drive train uses curvature drive, one stick operation
+    int leftMotor;
     differentialDriveTrain.DriveDifferentialCurvature(xSpeed, zSpeed);
 
     //left vibrator indicates robot is rotating

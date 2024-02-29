@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.PWM;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.drive.RobotDriveBase;
 
 import com.revrobotics.CANSparkMax;
 
@@ -22,19 +23,22 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 public class DriveTrainSubsystem extends SubsystemBase {
 
   //init variables
-    //CANSparkMax leftMotor1;
+    
 
  CANSparkMax frontRightDrive;
  CANSparkMax backRightDrive;
  CANSparkMax frontLeftDrive;
  CANSparkMax backLeftDrive;
+ int leftMotor;
   Encoder frontRightDriveEncoder;
   Encoder backRightDriveEncoder;
   Encoder frontLeftDriveEncoder;
   Encoder backLeftDriveEncoder;
+  
   DifferentialDrive differentialDriveTrain;
   Encoder[] encoders;
- 
+
+  
 
 
   public DriveTrainSubsystem(CANSparkMax frontRightDrive, CANSparkMax backRightDrive, CANSparkMax frontLeftDrive, CANSparkMax backLeftDrive){
@@ -43,10 +47,9 @@ public class DriveTrainSubsystem extends SubsystemBase {
     this.backRightDrive = backRightDrive;
     this.frontLeftDrive = frontLeftDrive;
     this.backLeftDrive = backLeftDrive;
+  
+    
 
-    //Motor Controller groups
-    //backRightDrive.follow(frontRightDrive);
-    //backLeftDrive.follow(frontLeftDrive);
    
     this.differentialDriveTrain = new DifferentialDrive(frontRightDrive, frontLeftDrive);
     
@@ -67,10 +70,12 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
   public void DriveDifferentialCurvature(double xSpeed, double zRotation) {
     differentialDriveTrain.curvatureDrive(xSpeed, zRotation, true);
+   
     SmartDashboard.putNumber("curvatureDrive Speed", xSpeed);
     SmartDashboard.putNumber("curvatureDrive Rotation", zRotation);
   }
 
+  
   public int getEncoder (int encoder){
     if(encoders[encoder] !=null){
         return encoders[encoder].get();
