@@ -12,65 +12,42 @@ import edu.wpi.first.wpilibj.drive.*;
 import edu.wpi.first.wpilibj.Encoder;
 
 import java.lang.ModuleLayer.Controller;
+import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 
 
-public class Drive extends Command {
-  /** Creates a new Drive. */
-  public Drive() {
-    // Use addRequirements() here to declare subsystem dependencies.
-  }
-  
-  DriveTrainSubsystem driveTrain;
-  MotorController frontLeftDrive;
-  MotorController frontRightDrive;
-  DifferentialDrive differentialDriveTrain;
+public class Drive extends Command{
 
-  Joystick controller1 = new Joystick(0);
-  Joystick controller2 = new Joystick(1);
+  private final DriveTrainSubsystem drivetrain;
+  private final DoubleSupplier throttle;
+  private final DoubleSupplier rotation;
 
-   /**
-   * Creates a new DriverOperated.
-   * @return 
-   */
-  public void DriverOperated(DriveTrainSubsystem driveTrain, MotorController frontLeftDrive, MotorController frontRightDrive) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    this.driveTrain = driveTrain;
+  public Drive(DriveTrainSubsystem drivetrain, DoubleSupplier throttle, DoubleSupplier rotation) {
+    this.drivetrain = drivetrain;
+
+    this.throttle = throttle;
+    this.rotation = rotation;
+
+    addRequirements(this.drivetrain);
   }
 
-  /*public void drive(double horizontalSpeed, double forwardSpeed, double rotation) {
-    driveTrain.driveCartesian(horizontalSpeed, forwardSpeed, rotation);
-  }*/
-
-
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
-    // driving: left stick
-    double forwardSpeed = controller1.getRawAxis(5);
-    double horizontalSpeed = controller1.getRawAxis(4);
-    double rotation = controller1.getRawAxis(0);
-    boolean slowButton = controller1.getRawButton(2);
-
-    Double slowDownFactor = .3;{
-    /*if(slowButton){
-      driveTrain.drive(slowDownFactor * horizontalSpeed, slowDownFactor * -forwardSpeed, slowDownFactor * rotation);
-    }else{
-      driveTrain.drive(horizontalSpeed, -forwardSpeed, rotation);
-    }*/
+  public void execute() {
+    drivetrain.arcadeDrive(
+    -throttle.getAsDouble(),
+    rotation.getAsDouble());
   }
 
-  // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    drivetrain.arcadeDrive(0.0, 0.0);
+  }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;
