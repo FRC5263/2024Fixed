@@ -39,29 +39,29 @@ public final class Constants {
 
     //Encoder
     
-    public static CANSparkMax frontRightDriveEncoder;
-    public static CANSparkMax backRightDriveEncoder;
-    public static CANSparkMax frontLeftDriveEncoder;
-    public static CANSparkMax backLeftDriveEncoder;
+    public static CANSparkMax leftMotorEncoder;
+    public static CANSparkMax leftMotor2Encoder;
+    public static CANSparkMax rightMotorEncoder;
+    public static CANSparkMax rightMotor2Encoder;
     public static CANSparkMax shooterRightEncoder;
     public static CANSparkMax shooterLeftEncoder;
     public static CANSparkMax elbowEncoder;
     
     // CAN Channel Assignments
-    public final int CAN_Drive_FR = 6;
-    public final int CAN_Drive_BR = 5;
-    public final int CAN_Drive_FL = 1;
-    public final int CAN_Drive_BL = 2;
+    public final int CAN_Drive_R = 6;
+    public final int CAN_Drive_R2 = 5;
+    public final int CAN_Drive_L = 1;
+    public final int CAN_Drive_L2 = 2;
     public final int CAN_Shooter_R = 3;
     public final int CAN_Shooter_L = 7;
     public final int CAN_Elbow = 8;
    
 
     // Drivetrain
-    public MotorController frontRightDrive = new Spark(CAN_Drive_FR);
-    public MotorController backRightDrive = new Spark(CAN_Drive_BR);
-    public MotorController frontLeftDrive = new Spark(CAN_Drive_FL);
-    public MotorController backLeftDrive = new Spark(CAN_Drive_BL);
+    public MotorController RightDrive = new Spark(CAN_Drive_R);
+    public MotorController Right2Drive = new Spark(CAN_Drive_R2);
+    public MotorController LeftDrive = new Spark(CAN_Drive_L);
+    public MotorController Left2Drive = new Spark(CAN_Drive_L2);
 
     //Other
     public MotorController shooterRight = new Spark(CAN_Shooter_R);
@@ -84,21 +84,21 @@ public final class Constants {
     Shuffleboard.selectTab("Main Tab");
 
     //adds the sparks to the system tab
-    Shuffleboard.getTab("System").add("Spark 1", OperatorConstants.frontLeftDriveEncoder);
-    Shuffleboard.getTab("System").add("Spark 2", OperatorConstants.backLeftDriveEncoder);
+    Shuffleboard.getTab("System").add("Spark 1", OperatorConstants.leftMotorEncoder);
+    Shuffleboard.getTab("System").add("Spark 2", OperatorConstants.leftMotor2Encoder);
     Shuffleboard.getTab("System").add("Spark 3", OperatorConstants.shooterRightEncoder);
     //Shuffleboard.getTab("System").add("Spark 4", OperatorConstants.climber);
-    Shuffleboard.getTab("System").add("Spark 5", OperatorConstants.frontRightDriveEncoder);
-    Shuffleboard.getTab("System").add("Spark 6", OperatorConstants.backRightDriveEncoder);
+    Shuffleboard.getTab("System").add("Spark 5", OperatorConstants.rightMotorEncoder);
+    Shuffleboard.getTab("System").add("Spark 6", OperatorConstants.rightMotor2Encoder);
     Shuffleboard.getTab("System").add("Spark 7", OperatorConstants.shooterLeftEncoder);
     Shuffleboard.getTab("System").add("Spark 8", OperatorConstants.elbowEncoder);
     
 
     //current limits for sparks
-    OperatorConstants.frontRightDriveEncoder.setSmartCurrentLimit(45);
-    OperatorConstants.backRightDriveEncoder.setSmartCurrentLimit(45);
-    OperatorConstants.frontLeftDriveEncoder.setSmartCurrentLimit(45);
-    OperatorConstants.backLeftDriveEncoder.setSmartCurrentLimit(45);
+    OperatorConstants.rightMotorEncoder.setSmartCurrentLimit(45);
+    OperatorConstants.rightMotor2Encoder.setSmartCurrentLimit(45);
+    OperatorConstants.leftMotorEncoder.setSmartCurrentLimit(45);
+    OperatorConstants.leftMotor2Encoder.setSmartCurrentLimit(45);
     
   }
 }
