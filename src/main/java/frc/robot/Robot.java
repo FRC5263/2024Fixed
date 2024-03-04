@@ -32,7 +32,6 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     System.out.println("ROBOTINIT\n\n");
     m_robotContainer = new RobotContainer();
-    
     // Where the Constants.ConstantsInit(); was
    
 

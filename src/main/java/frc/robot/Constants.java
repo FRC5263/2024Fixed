@@ -7,7 +7,7 @@ package frc.robot;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkMaxAbsoluteEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import frc.robot.Constants;
+//import frc.robot.Constants;
 
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -36,8 +36,6 @@ public final class Constants {
     //controllers
     public static final XboxController controller0 = new XboxController(0);
     public static final XboxController controller1 = new XboxController(1);
-    
-    public int leftMotor;
 
     //Encoder
     
@@ -48,8 +46,7 @@ public final class Constants {
     public static CANSparkMax shooterRightEncoder;
     public static CANSparkMax shooterLeftEncoder;
     public static CANSparkMax elbowEncoder;
-
-  
+    
     // CAN Channel Assignments
     public final int CAN_Drive_FR = 6;
     public final int CAN_Drive_BR = 5;
@@ -65,7 +62,6 @@ public final class Constants {
     public MotorController backRightDrive = new Spark(CAN_Drive_BR);
     public MotorController frontLeftDrive = new Spark(CAN_Drive_FL);
     public MotorController backLeftDrive = new Spark(CAN_Drive_BL);
-
 
     //Other
     public MotorController shooterRight = new Spark(CAN_Shooter_R);

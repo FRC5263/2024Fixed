@@ -18,7 +18,6 @@ public class TeleOp extends Command {
   XboxController controller0;
   XboxController controller1;
   boolean driveTrainOnly;
-  
   double xSpeed;
   double zSpeed;
 
@@ -29,17 +28,14 @@ public class TeleOp extends Command {
    * @param driveTrainEncoders  the robots drive train encoders
    * @param arm the arm motors
    * @param claw  the claw motors
-   * @param controller0 driver controller
-   * @param controller1 operator controller
    */
-  public TeleOp(DriveTrainSubsystem differentialDriveTrain, XboxController controller0, XboxController controller1) {
+  public TeleOp(DriveTrainSubsystem differentialDriveTrain, XboxController controller0) {
     System.out.print("Creating new Teleop\n");
 
     //assingning method inputs to class variables
     this.differentialDriveTrain = differentialDriveTrain;
-    
+   
     this.controller0 = controller0;
-    this.controller1 = controller1;
 
     System.out.print("Teleop created\n");
 
@@ -83,8 +79,7 @@ public class TeleOp extends Command {
     }
 
     //drive train uses curvature drive, one stick operation
-    int leftMotor;
-    differentialDriveTrain.DriveDifferentialCurvature(xSpeed, zSpeed);
+    differentialDriveTrain.arcadeDrive(xSpeed, zSpeed);
 
     //left vibrator indicates robot is rotating
     controller0.setRumble(RumbleType.kRightRumble, controller0.getRawAxis(0) * 2);
