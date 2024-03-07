@@ -47,11 +47,12 @@ public final class Constants {
     public static CANSparkMax shooterLeftEncoder;
     public static CANSparkMax elbowEncoder;
     
+
     // CAN Channel Assignments
     public final int CAN_Drive_R = 6;
     public final int CAN_Drive_R2 = 5;
-    public final int CAN_Drive_L = 1;
-    public final int CAN_Drive_L2 = 2;
+    public final int CAN_Drive_L = 2;
+    public final int CAN_Drive_L2 = 1;
     public final int CAN_Shooter_R = 3;
     public final int CAN_Shooter_L = 7;
     public final int CAN_Elbow = 8;
@@ -82,6 +83,7 @@ public final class Constants {
 
     //selects the main tab in the dashboard
     Shuffleboard.selectTab("Main Tab");
+
 
     //adds the sparks to the system tab
     Shuffleboard.getTab("System").add("Spark 1", OperatorConstants.leftMotorEncoder);

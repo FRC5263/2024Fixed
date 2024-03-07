@@ -16,11 +16,13 @@ public class DriveTrainSubsystem extends SubsystemBase {
   private final CANSparkMax rightMotor;
   private final CANSparkMax rightMotor2;
 
-  Encoder leftEncoder;
-  Encoder leftEncoder2;
-  Encoder rightEncoder;
-  Encoder right2Encoder;
-  Encoder[] encoders;
+Encoder leftEncoder;
+Encoder leftEncoder2;
+Encoder rightEncoder;
+Encoder right2Encoder;
+Encoder[] encoders;
+Encoder[] encoder = {leftEncoder, leftEncoder2, rightEncoder, right2Encoder};
+ 
 
 
   
@@ -33,15 +35,12 @@ public class DriveTrainSubsystem extends SubsystemBase {
     rightMotor = new CANSparkMax(5, MotorType.kBrushless);
     rightMotor2 = new CANSparkMax(6, MotorType.kBrushless);
 
-
+ 
     leftMotor.setInverted(false);
     leftMotor2.setInverted(false);
     
-    leftEncoder = new Encoder(0, 0);
-    leftEncoder2 = new Encoder(1, 1);
-    rightEncoder = new Encoder(2, 2);
-    right2Encoder = new Encoder(3, 3);
-
+   
+    Encoder[] encoders = {leftEncoder, leftEncoder2, rightEncoder, right2Encoder};
 
 
     rightMotor.setInverted(true);
@@ -49,10 +48,17 @@ public class DriveTrainSubsystem extends SubsystemBase {
     leftMotor2.follow(leftMotor);
     rightMotor2.follow(rightMotor);
 
-    diffDrive = new DifferentialDrive(leftMotor, leftMotor);
+    diffDrive = new DifferentialDrive(leftMotor, rightMotor);
     System.out.print("Drivetrain subsystem created");
     System.out.print("Drivetrain encoders created");
   }
+
+
+
+
+
+
+  
 
   public void arcadeDrive(double throttle, double rotation){
     diffDrive.arcadeDrive(throttle, rotation);
