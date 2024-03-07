@@ -68,14 +68,14 @@ public class TeleOp extends Command {
     if (controller0.getRawAxis(1) < .301 && controller0.getRawAxis(1) > -.301) {
       xSpeed = 0;
     } else {
-      xSpeed = -controller0.getRawAxis(1) - (controller0.getRawAxis(3)*.5);
+      xSpeed = controller0.getRawAxis(1) - (controller0.getRawAxis(3)*.5);
     }
 
     //deadzones y direction
     if (controller0.getRawAxis(0) < .301 && controller0.getRawAxis(0) > -.301) {
       zSpeed = 0;
     } else {
-      zSpeed = -controller0.getRawAxis(0) - (controller0.getRawAxis(3)*.5);
+      zSpeed = controller0.getRawAxis(0) - (controller0.getRawAxis(3)*.5);
     }
 
     //drive train uses curvature drive, one stick operation
