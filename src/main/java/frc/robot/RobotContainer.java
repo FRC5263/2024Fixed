@@ -10,7 +10,7 @@ import frc.robot.commands.TeleOp;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.Elbow;
 import frc.robot.subsystems.ClimberSubsystem;
-import frc.robot.commands.climber;
+import frc.robot.commands.climberCommand;
 import frc.robot.commands.ElbowControl;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -27,13 +27,14 @@ public class RobotContainer{
   private final Elbow m_elbow;
   private final XboxController m_driveController;
   private final XboxController m_elbowController;
+  private final XboxController m_climberController;
   private final ClimberSubsystem m_climberSubsystem;
     private final Command m_teleOp;
 
 
 
   private final Command m_DriveCommand;
-    private final Command m_climber;
+    private final Command m_climberCommand;
 
 
   public RobotContainer() {
@@ -41,14 +42,17 @@ public class RobotContainer{
    
     m_driveController = new XboxController(0);
     m_elbowController = new XboxController(1);
+   m_climberController = new XboxController(3);
   
     m_drivetrainSubsystem = new DriveTrainSubsystem();
     m_elbow = new Elbow();
-     m_climber = new climber();
     m_climberSubsystem = new ClimberSubsystem();
+    m_climberCommand = new climberCommand();
+    
 
     m_DriveCommand = new Drive(m_drivetrainSubsystem, null, null);
-    m_teleOp = new TeleOp(m_drivetrainSubsystem, m_driveController, m_elbow, m_elbowController, m_climberSubsystem);
+    
+    m_teleOp = new TeleOp(m_drivetrainSubsystem, m_driveController, m_elbow, m_elbowController, m_climberSubsystem, m_climberController);
   }
   public Command getTelOpCommand() {
     return m_teleOp;

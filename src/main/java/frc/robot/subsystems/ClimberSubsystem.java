@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ClimberSubsystem extends SubsystemBase{
 
-private final MotorController Climber;
+private final CANSparkMax climbermotor;
 
 public ClimberSubsystem(){
-    Climber =  new CANSparkMax(4, MotorType.kBrushless);
+    climbermotor =  new CANSparkMax(9, MotorType.kBrushless);
     System.out.println("Climber subsystem created; god save us");
 }
 
@@ -23,7 +23,7 @@ public void periodic() {
   
 }
 public void ySpeed(double Power){
-    Climber.set(Power);
+    climbermotor.set(Power);
 
 
 
