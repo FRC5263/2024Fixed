@@ -9,33 +9,37 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.subsystems.DriveTrainSubsystem;
+import frc.robot.subsystems.Elbow;
 
 public class TeleOp extends Command {
   //init variables
   DriveTrainSubsystem differentialDriveTrain;
   DriveTrainSubsystem driveTrainEncoders;
+  Elbow elbow;
  
   XboxController controller0;
   XboxController controller1;
   boolean driveTrainOnly;
   double xSpeed;
   double zSpeed;
+  double ySpeed;
 
   //docstring
   /**
    * creates the teleop command for the teleop period of the robot
    * @param differentialDriveTrain  the robots drive train motors
    * @param driveTrainEncoders  the robots drive train encoders
-   * @param arm the arm motors
+   * @param Elbow the arm motors
    * @param claw  the claw motors
    */
-  public TeleOp(DriveTrainSubsystem differentialDriveTrain, XboxController controller0) {
+  public TeleOp(DriveTrainSubsystem differentialDriveTrain, XboxController controller0, Elbow elbow, XboxController controller1) {
     System.out.print("Creating new Teleop\n");
 
     //assingning method inputs to class variables
     this.differentialDriveTrain = differentialDriveTrain;
    
     this.controller0 = controller0;
+    this.controller1 = controller1;
 
     System.out.print("Teleop created\n");
 
@@ -59,6 +63,7 @@ public class TeleOp extends Command {
     System.out.print("Teleop initialized\n");
     xSpeed = 0;
     zSpeed = 0;
+    ySpeed = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
