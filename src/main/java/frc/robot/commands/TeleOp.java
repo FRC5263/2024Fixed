@@ -19,11 +19,11 @@ public class TeleOp extends Command {
   DriveTrainSubsystem differentialDriveTrain;
   DriveTrainSubsystem driveTrainEncoders;
   Elbow elbow;
-  ClimberSubsystem climber;
+  ClimberSubsystem climberEncoder;
  
   XboxController controller0;
   XboxController controller1;
-  XboxController controller3;
+  
   boolean driveTrainOnly;
   double xSpeed;
   double zSpeed;
@@ -45,7 +45,7 @@ public class TeleOp extends Command {
    
     this.controller0 = controller0;
     this.controller1 = controller1;
-    this.controller3 = controller3;
+    
 
     System.out.print("Teleop created\n");
 
@@ -60,7 +60,6 @@ public class TeleOp extends Command {
    * @param driveTrainEncoders the robots drive train encoders
    * @param controller0 driver controller
    * @param controller1 operator controller
-   * @param controller3
    */
 
 
@@ -89,6 +88,11 @@ public class TeleOp extends Command {
     } else {
       zSpeed = controller0.getRawAxis(0) - (controller0.getRawAxis(3)*.5);
     }
+    if(controller1.getBButton() == true){ climberEncoder.ySpeed(-.5); }
+            else if(controller1.getBButton() == true){ climberEncoder.ySpeed(.5);}
+            else if(controller1.getBButton() == true && controller1.getBButton() == true) { climberEncoder.ySpeed(.5);
+            }
+        
 
     //drive train uses curvature drive, one stick operation
     differentialDriveTrain.arcadeDrive(xSpeed, zSpeed);

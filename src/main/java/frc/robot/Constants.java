@@ -38,7 +38,7 @@ public final class Constants {
     //controllers
     public static final XboxController controller0 = new XboxController(0);
     public static final XboxController controller1 = new XboxController(1);
-    public static final XboxController controller3 = new XboxController(3);
+  
 
     //Encoder
     
