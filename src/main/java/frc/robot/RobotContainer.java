@@ -38,14 +38,17 @@ public class RobotContainer{
 
   public RobotContainer() {
     
+   
     m_driveController = new XboxController(0);
     m_elbowController = new XboxController(1);
+  
     m_drivetrainSubsystem = new DriveTrainSubsystem();
     m_elbow = new Elbow();
+     m_climber = new climber();
     m_climberSubsystem = new ClimberSubsystem();
 
     m_DriveCommand = new Drive(m_drivetrainSubsystem, null, null);
-    m_teleOp = new TeleOp(m_drivetrainSubsystem, m_driveController, m_elbow, m_elbowController, m_climber);
+    m_teleOp = new TeleOp(m_drivetrainSubsystem, m_driveController, m_elbow, m_elbowController, m_climberSubsystem);
   }
   public Command getTelOpCommand() {
     return m_teleOp;
