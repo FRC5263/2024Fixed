@@ -34,7 +34,7 @@ public class RobotContainer{
 
 
   private final Command m_DriveCommand;
-    private final Command m_climberCommand;
+  private final Command m_climberCommand;
 
 
   public RobotContainer() {
@@ -47,9 +47,9 @@ public class RobotContainer{
     m_drivetrainSubsystem = new DriveTrainSubsystem();
     m_elbow = new Elbow();
     m_climberSubsystem = new ClimberSubsystem();
-    m_climberCommand = new climberCommand();
     
-
+    
+    m_climberCommand = new climberCommand(m_climberSubsystem);
     m_DriveCommand = new Drive(m_drivetrainSubsystem, null, null);
     
     m_teleOp = new TeleOp(m_drivetrainSubsystem, m_driveController, m_elbow, m_elbowController, m_climberSubsystem, m_climberController);

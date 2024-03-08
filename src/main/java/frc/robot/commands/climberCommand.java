@@ -10,8 +10,8 @@ public class climberCommand extends Command{
     public final XboxController controller3;
 
     Double ySpeed;
-    public climberCommand(){
-        climber = new ClimberSubsystem();
+    public climberCommand(ClimberSubsystem climber){
+        this.climber = climber;
         controller3 = new XboxController(3);
 
     }
