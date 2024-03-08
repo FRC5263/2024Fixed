@@ -42,10 +42,7 @@ private final double ySpeed;
       elbow.ySpeed(0);
     }
     
-    if (controller1.getAButtonPressed() == true) {
-        
-
-    }
+    
   
   }
   
