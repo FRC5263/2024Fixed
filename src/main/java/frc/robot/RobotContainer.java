@@ -47,7 +47,7 @@ public class RobotContainer{
     m_drivetrainSubsystem = new DriveTrainSubsystem();
     m_elbow = new Elbow();
     m_climberSubsystem = new ClimberSubsystem();
-    m_climberCommand = new climberCommand();
+    m_climberCommand = new climberCommand(m_climberSubsystem);
     
 
     m_DriveCommand = new Drive(m_drivetrainSubsystem, null, null);
