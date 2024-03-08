@@ -7,15 +7,19 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.climber;
+
 
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.Elbow;
+import frc.robot.subsystems.ClimberSubsystem;
 
 public class TeleOp extends Command {
   //init variables
   DriveTrainSubsystem differentialDriveTrain;
   DriveTrainSubsystem driveTrainEncoders;
   Elbow elbow;
+  ClimberSubsystem climber;
  
   XboxController controller0;
   XboxController controller1;
@@ -32,7 +36,7 @@ public class TeleOp extends Command {
    * @param Elbow the arm motors
    * @param claw  the claw motors
    */
-  public TeleOp(DriveTrainSubsystem differentialDriveTrain, XboxController controller0, Elbow elbow, XboxController controller1) {
+  public TeleOp(DriveTrainSubsystem differentialDriveTrain, XboxController controller0, Elbow elbow, XboxController controller1, ClimberSubsystem climber) {
     System.out.print("Creating new Teleop\n");
 
     //assingning method inputs to class variables
