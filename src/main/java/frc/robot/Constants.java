@@ -5,20 +5,14 @@
 package frc.robot;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkMaxAbsoluteEncoder;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.robot.Constants;
 
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import frc.robot.subsystems.DriveTrainSubsystem;
-import frc.robot.subsystems.ClimberSubsystem;
 
 
 
@@ -59,8 +53,8 @@ public final class Constants {
     public final int CAN_Drive_L2 = 1;
     public final int CAN_Shooter_R = 3;
     public final int CAN_Shooter_L = 7;
-    public final int CAN_Elbow =8;
-    public final int CAN_Climber = 9;
+    public final int CAN_Elbow =9;
+    public final int CAN_Climber = 4;
    
 
     // Drivetrain
