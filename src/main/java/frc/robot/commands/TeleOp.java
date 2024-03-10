@@ -88,18 +88,24 @@ public class TeleOp extends Command {
     if (controller0.getRawAxis(1) < .301 && controller0.getRawAxis(1) > -.301) {
       xSpeed = 0;
     } else {
-      xSpeed = controller0.getRawAxis(1) - (controller0.getRawAxis(3)*.2);
+      xSpeed = controller0.getRawAxis(1) - (controller0.getRawAxis(3)*.18);
     }
 
     //deadzones y direction
     if (controller0.getRawAxis(0) < .301 && controller0.getRawAxis(0) > -.301) {
       zSpeed = 0;
     } else {
-      zSpeed = controller0.getRawAxis(0) - (controller0.getRawAxis(3)*.2);
+      zSpeed = controller0.getRawAxis(0) - (controller0.getRawAxis(3)*.18);
     }
     if(controller1.getBButton()){ elbow.ySpeed(-.20); }
     else if(controller1.getAButton()){ elbow.ySpeed(.20); }
     else{ elbow.ySpeed(0); }
+
+   if(controller1.getLeftTriggerAxis() > .5 && controller1.getRightTriggerAxis() > .5) { 
+     intakemotor.DriveIntake(1);
+     shooter.shoottheshooter(-100); }
+     else { intakemotor.DriveIntake(0); 
+    shoottheshooter(0); } 
 
     if(controller1.getLeftTriggerAxis() > .5){ intakemotor.DriveIntake(1); }
     else if(controller1.getRightBumper()){ intakemotor.DriveIntake(-1); }
