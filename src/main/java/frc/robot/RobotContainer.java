@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Drive;
+import frc.robot.commands.ElbowActuate;
 import frc.robot.commands.TeleOp;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.Elbow;
@@ -13,7 +14,9 @@ import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.commands.climberCommand;
 import frc.robot.commands.ElbowControl;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
 /**
@@ -23,39 +26,30 @@ import edu.wpi.first.wpilibj2.command.Command;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer{
-  private final DriveTrainSubsystem m_drivetrainSubsystem;
-  private final Elbow m_elbow;
-  private final XboxController m_driveController;
-  private final XboxController m_elbowController;
+  private final DriveTrainSubsystem m_drivetrainSubsystem = new DriveTrainSubsystem();
+  private final Elbow m_elbow = new Elbow();
+  private final ClimberSubsystem m_climberSubsystem = new ClimberSubsystem();
  
-  private final ClimberSubsystem m_climberSubsystem;
-    private final Command m_teleOp;
-
-
-
-  private final Command m_DriveCommand;
-  private final Command m_climberCommand;
-
+  XboxController  m_driveController = new XboxController(0);
+  XboxController  m_elbowController = new XboxController(1);
+  private final Command m_teleOp;
 
   public RobotContainer() {
-    
-   
-    m_driveController = new XboxController(0);
-    m_elbowController = new XboxController(1);
-   
-  
-    m_drivetrainSubsystem = new DriveTrainSubsystem();
-    m_elbow = new Elbow();
-    m_climberSubsystem = new ClimberSubsystem();
-    
-    
-    m_climberCommand = new climberCommand(m_climberSubsystem);
-    m_DriveCommand = new Drive(m_drivetrainSubsystem, null, null);
-    
-    m_teleOp = new TeleOp(m_drivetrainSubsystem, m_driveController, m_elbow, m_elbowController, m_climberSubsystem, m_elbowController);
+        
+    m_climberSubsystem.setDefaultCommand(new climberCommand(m_climberSubsystem));
+    m_drivetrainSubsystem.setDefaultCommand(new Drive(m_drivetrainSubsystem, ()-> m_driveController.getLeftY(), ()-> m_driveController.getRightX()));
+
+    m_teleOp = new TeleOp(m_drivetrainSubsystem, m_driveController, m_elbow, m_elbowController, m_climberSubsystem);
+
+    configureButtonBindings();
   }
-  public Command getTelOpCommand() {
-    return m_teleOp;
-  } 
+
+  private void configureButtonBindings() {
+    new JoystickButton(m_elbowController, Button.kB.value).onTrue(new ElbowActuate(m_elbow));
+  }
+
+  // public Command getTelOpCommand() {
+  //   return m_teleOp;
+  // } 
 }
 

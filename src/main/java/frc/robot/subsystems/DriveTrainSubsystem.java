@@ -33,15 +33,9 @@ Encoder[] encoder = {leftEncoder, leftEncoder2, rightEncoder, right2Encoder};
     leftMotor2 = new CANSparkMax(2, MotorType.kBrushless);
 
     rightMotor = new CANSparkMax(5, MotorType.kBrushless);
-    rightMotor2 = new CANSparkMax(6, MotorType.kBrushless);
-
- 
-    leftMotor.setInverted(false);
-    leftMotor2.setInverted(false);
-    
+    rightMotor2 = new CANSparkMax(6, MotorType.kBrushless);    
    
     Encoder[] encoders = {leftEncoder, leftEncoder2, rightEncoder, right2Encoder};
-
 
     rightMotor.setInverted(true);
 

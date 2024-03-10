@@ -59,7 +59,7 @@ public final class Constants {
     public final int CAN_Drive_L2 = 1;
     public final int CAN_Shooter_R = 3;
     public final int CAN_Shooter_L = 7;
-    public final int CAN_Elbow = 8;
+    public final int CAN_Elbow =8;
     public final int CAN_Climber = 9;
    
 
@@ -95,11 +95,11 @@ public final class Constants {
     Shuffleboard.getTab("System").add("Spark 1", OperatorConstants.leftMotorEncoder);
     Shuffleboard.getTab("System").add("Spark 2", OperatorConstants.leftMotor2Encoder);
     Shuffleboard.getTab("System").add("Spark 3", OperatorConstants.shooterRightEncoder);
-    Shuffleboard.getTab("System").add("Spark 9", OperatorConstants.climberEncoder);
+    Shuffleboard.getTab("System").add("Spark 9", OperatorConstants.elbowEncoder);
     Shuffleboard.getTab("System").add("Spark 5", OperatorConstants.rightMotorEncoder);
     Shuffleboard.getTab("System").add("Spark 6", OperatorConstants.rightMotor2Encoder);
     Shuffleboard.getTab("System").add("Spark 7", OperatorConstants.shooterLeftEncoder);
-    Shuffleboard.getTab("System").add("Spark 8", OperatorConstants.elbowEncoder);
+    Shuffleboard.getTab("System").add("Spark 8", OperatorConstants.climberEncoder);
     
 
     //current limits for sparks
@@ -107,6 +107,6 @@ public final class Constants {
     OperatorConstants.rightMotor2Encoder.setSmartCurrentLimit(45);
     OperatorConstants.leftMotorEncoder.setSmartCurrentLimit(45);
     OperatorConstants.leftMotor2Encoder.setSmartCurrentLimit(45);
-    OperatorConstants.climberEncoder.setSmartCurrentLimit(60);
+    OperatorConstants.climberEncoder.setSmartCurrentLimit(40);
   }
 }

@@ -19,7 +19,7 @@ public class TeleOp extends Command {
   DriveTrainSubsystem differentialDriveTrain;
   DriveTrainSubsystem driveTrainEncoders;
   Elbow elbow;
-  ClimberSubsystem climberEncoder;
+  ClimberSubsystem climber;
  
   XboxController controller0;
   XboxController controller1;
@@ -35,9 +35,8 @@ public class TeleOp extends Command {
    * @param differentialDriveTrain  the robots drive train motors
    * @param driveTrainEncoders  the robots drive train encoders
    * @param Elbow the arm motors
-   * @param claw  the claw motors
    */
-  public TeleOp(DriveTrainSubsystem differentialDriveTrain, XboxController controller0, Elbow elbow, XboxController controller1, ClimberSubsystem climber, XboxController controller3) {
+  public TeleOp(DriveTrainSubsystem differentialDriveTrain, XboxController controller0, Elbow elbow, XboxController controller1, ClimberSubsystem climber) {
     System.out.print("Creating new Teleop\n");
 
     //assingning method inputs to class variables
@@ -88,10 +87,18 @@ public class TeleOp extends Command {
     } else {
       zSpeed = controller0.getRawAxis(0) - (controller0.getRawAxis(3)*.5);
     }
-    if(controller1.getBButton() == true){ climberEncoder.ySpeed(-.5); }
-            else if(controller1.getBButton() == true){ climberEncoder.ySpeed(.5);}
-            else if(controller1.getBButton() == true && controller1.getBButton() == true) { climberEncoder.ySpeed(.5);
-            }
+    if(controller1.getBButton() == true){ elbow.ySpeed(-.5); }
+      else if(controller1.getBButton() == true){ elbow.ySpeed(.5);}
+      else if(controller1.getBButton() == true && controller1.getBButton() == true) { elbow.ySpeed(.5); }
+      else if(controller1.getBButton() == false){ elbow.ySpeed(0); }
+
+
+    if(controller1.getAButton() == true){ elbow.ySpeed(.5);}
+      else if(controller1.getAButton() == true){ elbow.ySpeed(-.5); }
+      else if(controller1.getAButton() == true && controller1.getAButton() == true){ elbow.ySpeed(-.5);}
+      else if(controller1.getAButton() == false){ elbow.ySpeed(0); }
+
+
         
 
     //drive train uses curvature drive, one stick operation

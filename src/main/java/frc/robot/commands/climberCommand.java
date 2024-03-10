@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.Constants;
 
 import edu.wpi.first.wpilibj.XboxController;
@@ -13,8 +14,7 @@ public class climberCommand extends Command{
     Double ySpeed;
     public climberCommand(ClimberSubsystem climber){
         this.climber = climber;
-        
-
+        addRequirements(climber);
     }
         @Override
         public void initialize() {}

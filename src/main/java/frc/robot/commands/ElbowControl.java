@@ -34,6 +34,7 @@ private final double ySpeed;
   public void execute() {
 
     //checks if the buttons are pressed down
+    /* 
     if (controller1.getRawButton(1) == true) {
       elbow.ySpeed(.5);
     } else if (controller1.getRawButton(1) == true) {
@@ -41,7 +42,7 @@ private final double ySpeed;
     } else if (controller1.getRawButton(1) == true && (controller1.getRawButton(1) == true)) {
       elbow.ySpeed(0);
     }
-    
+    */
     
   
   }
