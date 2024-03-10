@@ -85,6 +85,15 @@ public class TeleOp extends Command {
   @Override
   public void execute() {
     //deadzones x dircetion
+    if (controller0.getRawAxis(1) < .301 && controller0.getRawAxis(1) > -.301 && controller0.getRawAxis(0) < .301 && controller0.getRawAxis(0) > -.301) {
+      xSpeed = 0;
+      zSpeed = 0;
+    } else {
+      xSpeed = controller0.getRawAxis(1) - (controller0.getRawAxis(3)*.18);
+      zSpeed = controller0.getRawAxis(0) - (controller0.getRawAxis(3)*.14);
+    }
+    
+    
     if (controller0.getRawAxis(1) < .301 && controller0.getRawAxis(1) > -.301) {
       xSpeed = 0;
     } else {
@@ -105,7 +114,7 @@ public class TeleOp extends Command {
      intakemotor.DriveIntake(1);
      shooter.shoottheshooter(-100); }
      else { intakemotor.DriveIntake(0); 
-    shoottheshooter(0); } 
+    shooter.shoottheshooter(0); } 
 
     if(controller1.getLeftTriggerAxis() > .5){ intakemotor.DriveIntake(1); }
     else if(controller1.getRightBumper()){ intakemotor.DriveIntake(-1); }
