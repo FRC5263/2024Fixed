@@ -16,6 +16,7 @@ import frc.robot.subsystems.ClimberSubsystem;
 
 import frc.robot.subsystems.ShooterSubsystem;
 
+
 public class TeleOp extends Command {
   //init variables
   DriveTrainSubsystem differentialDriveTrain;
@@ -36,6 +37,7 @@ public class TeleOp extends Command {
   double shooterpower;
   double climberpower;
 
+ 
 
   //docstring
   /**
