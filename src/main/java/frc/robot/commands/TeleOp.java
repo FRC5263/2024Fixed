@@ -113,7 +113,7 @@ public class TeleOp extends Command {
     else{ elbow.ySpeed(0); }
 
    if(controller1.getLeftTriggerAxis() > .5 && controller1.getRightTriggerAxis() > .5) { 
-     intakemotor.DriveIntake(1);
+     intakemotor.DriveIntake(1.5);
      shooter.shoottheshooter(-100); }
      else { intakemotor.DriveIntake(0); 
     shooter.shoottheshooter(0); } 
@@ -133,11 +133,12 @@ public class TeleOp extends Command {
 
         
 
-    //drive train uses curvature drive, one stick operation
+    //drive train uses arcade drive, two stick operation
     differentialDriveTrain.arcadeDrive(xSpeed, zSpeed);
 
     //left vibrator indicates robot is rotating
     controller0.setRumble(RumbleType.kRightRumble, controller0.getRawAxis(0) * 2);
+    controller0.setRumble(RumbleType.kLeftRumble, controller0.getRawAxis(1) * 5);
 
     //checks if drive train only is true and the decidies wether or not to execute code for the other subsystems
     if (driveTrainOnly == false) {
