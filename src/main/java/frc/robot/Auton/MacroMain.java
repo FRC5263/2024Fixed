@@ -59,7 +59,7 @@ public class MacroMain extends Command{
                 e.printStackTrace();
             }
         while(isworking){
-            if(controller0.getAButton()){
+            if(controller0.getLeftBumper()){
                 isRecording = !isRecording;
             }
             if(isRecording){
