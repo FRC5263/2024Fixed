@@ -1,4 +1,4 @@
-package frc.robot.Auton;
+package frc.robot.commands;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -64,15 +64,15 @@ public class MacroMain extends Command{
             }
             if(isRecording){
                 try {
-                    if(isRecording){
-                        recorder.Record();
+                    recorder.Record();
                     }
-                } 
+                 
                 catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
+        
         try {
             if(recorder != null){
                 recorder.end();

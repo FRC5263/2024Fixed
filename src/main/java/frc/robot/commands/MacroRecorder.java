@@ -1,4 +1,4 @@
-package frc.robot.Auton;
+package frc.robot.commands;
 
 import java.io.FileWriter;
 import java.io.IOException;
