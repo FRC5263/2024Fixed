@@ -43,7 +43,7 @@ public class AutonBad extends Command {
         }
         else if (timer.get() >= 3 && timer.get() <= 4) {
           System.out.print("3 seconds\n");
-          drivetrain.arcadeDrive(0, 0);
+          drivetrain.arcadeDrive(-.3, 0);
         }
         else if (timer.get() >= 4) {
           drivetrain.arcadeDrive(0, 0);

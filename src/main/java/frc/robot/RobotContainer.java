@@ -31,11 +31,13 @@ public class RobotContainer{
   XboxController  m_driveController = new XboxController(0);
   XboxController  m_elbowController = new XboxController(1);
   private final Command m_teleOp;
+  private final Command m_autonBad;
 
   public RobotContainer() {
     m_drivetrainSubsystem.setDefaultCommand(new Drive(m_drivetrainSubsystem, ()-> m_driveController.getLeftY(), ()-> m_driveController.getRightX()));
 
     m_teleOp = new TeleOp(m_drivetrainSubsystem, m_driveController, m_elbow, m_elbowController, m_intakemotor, m_ShooterSubsystem, m_ClimberSubsystem);
+    m_autonBad = new Auton(m_drivetrainSubsystem);
 
     configureButtonBindings();
   }
@@ -47,5 +49,9 @@ public class RobotContainer{
   public Command getTeleOpCommand() {
     return m_teleOp;
   } 
+
+  public Command getAutonBadCommand() {
+    return m_autonBad;
+  }
 }
 
