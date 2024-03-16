@@ -123,7 +123,7 @@ public class TeleOp extends Command {
     else{ intakemotor.DriveIntake(0); }
 
     
-    if(controller1.getRightTriggerAxis() > .1){ shooter.shoottheshooter(-100); }
+    if(controller1.getRightTriggerAxis() > .1){ shooter.shoottheshooter(1); }
     else{ shooter.shoottheshooter(0); }
 
     if(controller1.getPOV() == 0){ climber.climb(-1); }
