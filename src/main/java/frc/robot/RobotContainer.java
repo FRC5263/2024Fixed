@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import frc.robot.commands.AutonBad;
 import frc.robot.commands.Drive;
 import frc.robot.commands.TeleOp;
 import frc.robot.subsystems.DriveTrainSubsystem;
@@ -37,7 +38,7 @@ public class RobotContainer{
     m_drivetrainSubsystem.setDefaultCommand(new Drive(m_drivetrainSubsystem, ()-> m_driveController.getLeftY(), ()-> m_driveController.getRightX()));
 
     m_teleOp = new TeleOp(m_drivetrainSubsystem, m_driveController, m_elbow, m_elbowController, m_intakemotor, m_ShooterSubsystem, m_ClimberSubsystem);
-    m_autonBad = new Auton(m_drivetrainSubsystem);
+    m_autonBad = new AutonBad(m_drivetrainSubsystem);
 
     configureButtonBindings();
   }
