@@ -13,7 +13,7 @@ public class ultrasonics {
 
     private final static Ultrasonic m_ultrasonic = new Ultrasonic(kUltrasonicPingPort, kUltrasonicEchoPort);
 
-    static double GetMeasurement(){
+    public static double GetMeasurement(){
     //get measurement and filter it
     double measurement = m_ultrasonic.getRangeMM();
     double filteredMeasurement = m_filter.calculate(measurement);

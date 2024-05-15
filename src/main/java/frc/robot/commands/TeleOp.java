@@ -15,7 +15,7 @@ import frc.robot.subsystems.intake;
 import frc.robot.subsystems.ClimberSubsystem;
 
 import frc.robot.subsystems.ShooterSubsystem;
-
+import frc.robot.subsystems.ultrasonics;
 
 public class TeleOp extends Command {
   //init variables
@@ -145,6 +145,7 @@ public class TeleOp extends Command {
 
        
     }
+   System.out.println(ultrasonics.GetMeasurement());
   }
 
   // Called once the command ends or is interrupted.
