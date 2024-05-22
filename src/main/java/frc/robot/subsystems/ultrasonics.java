@@ -1,43 +1,36 @@
 package frc.robot.subsystems;
 
 
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Ultrasonic;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.AnalogInput;
 
-public class ultrasonics extends TimedRobot {
-  Ultrasonic m_rangeFinder = new Ultrasonic(3, 2);
 
-  @Override
-  public void robotInit() {
-    Shuffleboard.getTab("Sensors").add(m_rangeFinder);
-  }
+public abstract class ultrasonics {
+	private AnalogInput sensor;
+	private double voltsPerInch;
+	private double zeroPos;
+	
+	
+	 //@param
+	 //@param 
+	 
+	public ultrasonics(AnalogInput device, double voltsPerInch){
+		sensor = device;
+		this.voltsPerInch = voltsPerInch;
+		zeroPos = 0;
+	}
 
-  @Override
-  public void teleopPeriodic() {
-    double distanceInches = m_rangeFinder.getRangeInches();
-    SmartDashboard.putNumber("Distance[inch]", distanceInches);
-  }
+	public void zero(){
+		zeroPos = sensor.getVoltage();
+	}
+	
+	public void resetZero(){
+		zeroPos = 0;
+	}
+	
 
-  @Override
-  public void testInit() {
+	 // @return
 
-    m_rangeFinder.ping();
-  }
-
-  @Override
-  public void testPeriodic() {
-    if (m_rangeFinder.isRangeValid()) {
-      SmartDashboard.putNumber("Distance[mm]", m_rangeFinder.getRangeMM());
-      SmartDashboard.putNumber("Distance[inch]", m_rangeFinder.getRangeInches());
-
-      m_rangeFinder.ping();
-    }
-  }
-
-  @Override
-  public void testExit() {
-    Ultrasonic.setAutomaticMode(true);
-  }
+	public double getRange(){
+		return (sensor.getVoltage() - zeroPos) / voltsPerInch;
+	}
 }
