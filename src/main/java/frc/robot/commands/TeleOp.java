@@ -145,7 +145,6 @@ public class TeleOp extends Command {
 
        
     }
-   System.out.println(ultrasonics.GetMeasurement());
   }
 
   // Called once the command ends or is interrupted.
