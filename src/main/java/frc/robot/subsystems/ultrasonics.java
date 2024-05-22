@@ -1,24 +1,43 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.math.filter.MedianFilter;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DigitalOutput;
+
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Ultrasonic;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class ultrasonics {
-    static final int kUltrasonicPingPort = 1;
-    static final int kUltrasonicEchoPort = 0;
+public class ultrasonics extends TimedRobot {
+  Ultrasonic m_rangeFinder = new Ultrasonic(2, 3);
 
-    // Ultrasonic sensors tend to be quite noisy and susceptible to sudden outliers,
-    // so measurements are filtered with a 5-sample median filter
-    private final static MedianFilter m_filter = new MedianFilter(5);
+  @Override
+  public void robotInit() {
+    Shuffleboard.getTab("Sensors").add(m_rangeFinder);
+  }
 
-    private final static Ultrasonic m_ultrasonic = new Ultrasonic(kUltrasonicPingPort, kUltrasonicEchoPort);
+  @Override
+  public void teleopPeriodic() {
+    double distanceInches = m_rangeFinder.getRangeInches();
+    SmartDashboard.putNumber("Distance[inch]", distanceInches);
+  }
 
-    public static double GetMeasurement(){
-    //get measurement and filter in
-    double measurement = m_ultrasonic.getRangeMM();
-    double filteredMeasurement = m_filter.calculate(measurement);
-    return filteredMeasurement;
+  @Override
+  public void testInit() {
+
+    m_rangeFinder.ping();
+  }
+
+  @Override
+  public void testPeriodic() {
+    if (m_rangeFinder.isRangeValid()) {
+      SmartDashboard.putNumber("Distance[mm]", m_rangeFinder.getRangeMM());
+      SmartDashboard.putNumber("Distance[inch]", m_rangeFinder.getRangeInches());
+
+      m_rangeFinder.ping();
     }
+  }
+
+  @Override
+  public void testExit() {
+    Ultrasonic.setAutomaticMode(true);
+  }
 }
