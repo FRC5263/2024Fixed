@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ultrasonics extends TimedRobot {
-  Ultrasonic m_rangeFinder = new Ultrasonic(2, 3);
+  Ultrasonic m_rangeFinder = new Ultrasonic(3, 2);
 
   @Override
   public void robotInit() {
