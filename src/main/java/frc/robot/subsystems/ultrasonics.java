@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.Ultrasonic;
 
 public class ultrasonics {
-    static final int kUltrasonicPingPort = 0;
-    static final int kUltrasonicEchoPort = 1;
+    static final int kUltrasonicPingPort = 1;
+    static final int kUltrasonicEchoPort = 0;
 
     // Ultrasonic sensors tend to be quite noisy and susceptible to sudden outliers,
     // so measurements are filtered with a 5-sample median filter
@@ -16,7 +16,7 @@ public class ultrasonics {
     private final static Ultrasonic m_ultrasonic = new Ultrasonic(kUltrasonicPingPort, kUltrasonicEchoPort);
 
     public static double GetMeasurement(){
-    //get measurement and filter it
+    //get measurement and filter in
     double measurement = m_ultrasonic.getRangeMM();
     double filteredMeasurement = m_filter.calculate(measurement);
     return filteredMeasurement;
