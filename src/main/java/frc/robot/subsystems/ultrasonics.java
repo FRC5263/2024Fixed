@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.Ultrasonic;
 
 public class ultrasonics {
-    static final int kUltrasonicPingPort = 0;
-    static final int kUltrasonicEchoPort = 1;
+    static final int kUltrasonicPingPort = 1;
+    static final int kUltrasonicEchoPort = 0;
 
     // Ultrasonic sensors tend to be quite noisy and susceptible to sudden outliers,
     // so measurements are filtered with a 5-sample median filter
